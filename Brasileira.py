@@ -10,23 +10,31 @@ time.sleep(3)
 sequencias_anteriores = [[1,3,], [2,4,], [3,5],[4,6],[5,7],[6,8],[26,26],[36,35],[6,23,12]]
 
 lista=[]
+lista_cores = []
+
 
 while True:
     for x in range(8):
         elem = driver.find_elements(By.CLASS_NAME,'number')
         elem2 = elem[-x-1].text
         lista.append(elem2)
+        
     if lista[-8:] in sequencias_anteriores or lista[-8:][::-1] in sequencias_anteriores:
         print("Sequencia repetida: " + str(lista[-8:]))
         # emitir alerta aqui
     else:
-        sequencias_anteriores.append(lista[-8:])
+        sequencias_anteriores.append(lista[-2:])
+        
+      elem = driver.find_elements(By.CLASS_NAME,'number')
+        color = elem[-x-1].value_of_css_property("color")
+        print("Cor do numero: " + color)
+    lista.clear()
 
     print(lista[-8:])
     lista = []
     lista.clear()
 
-    time.sleep(36)
+    time.sleep(39)
     
     
     
